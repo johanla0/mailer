@@ -6,20 +6,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IRLC Paperwork mailer</title>
 </head>
-<body>
+<body class="mx-3 mx-md-5">
   <h1 class="text-center my-3">Use the form below to send your paperwork</h1>
-  <form action="" class="mx-1 mx-md-5" id="send-paperwork-form">
-    <div class="mb-3">
-      <label for="recipient" class="form-label">Test #</label>
-      <input type="number" min="1" max="10" name="recipient" id="recipient" class="form-control" aria-describedby="recipientHelp">
-      <div id="recipientHelp" class="form-text">Type the account number provided by the tutor</div>
-    </div>
-    <div class="mb-3">
-      <label for="files" class="form-label">Files to upload</label>
-      <input type="file" name="files" id="files" class="form-control" aria-describedby="uploadHelp" multiple accept="image/jpg,image/jpeg">
-      <div id="uploadHelp" class="form-text">Choose files to upload</div>
-    </div>
-     <button type="submit" class="btn btn-primary" id="submit-button">Submit</button>
+  <form action="" id="send-paperwork-form">
+    <fieldset>
+      <div class="mb-3">
+        <label for="recipient" class="form-label">Test #</label>
+        <input type="number" min="1" max="10" name="recipient" id="recipient" class="form-control" placeholder="Test ID">
+      </div>
+      <div class="row">
+        <div class="mb-3 col-12 col-md-6">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" name="name" id="name" class="form-control" placeholder="Input your name as in contract">
+        </div>
+        <div class="mb-3 col-12 col-md-6">
+          <label for="group" class="form-label">Group number</label>
+          <input type="text" name="group" id="group" class="form-control" placeholder="Input your group number">
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="files" class="form-label">Photos to upload</label>
+        <input type="file" name="files" id="files" class="form-control" multiple accept="image/jpg,image/jpeg">
+      </div>
+      <div class="mt-4 mb-3 row">
+        <div class="col-12 col-md-3">
+          <button type="submit" class="btn btn-primary w-100" id="submit-button">Submit</button>
+        </div>
+        <div class="col-12 col-md-9 mt-3 mt-md-0 test-start text-md-center d-none">
+          <div class="spinner-border text-warning" role="status"></div>
+        </div>
+      </div>
+    </fieldset>
   </form>
+  <h2 class="text-center my-3 d-none">Successfully sent!</h2>
 </body>
 </html>
