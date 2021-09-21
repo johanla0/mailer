@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200..900&family=Roboto+Slab:wght@200..900&display=swap');
 
-@import "custom_colors";
+@import "custom_colors.scss";
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
 // Configuration
@@ -48,3 +48,8 @@
 // @import "../../../node_modules/bootstrap/scss/utilities/api";
 
 $theme-colors: map-merge($theme-colors, $custom-colors);
+
+body {
+  font-family: 'Inter', 'Arial', sans-serif;
+  color: $black;
+}

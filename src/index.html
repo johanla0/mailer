@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IRLC Paperwork mailer</title>
+</head>
+<body>
+  <h1 class="text-center my-3">Use the form below to send your paperwork</h1>
+  <form action="" class="mx-1 mx-md-5" id="send-paperwork-form">
+    <div class="mb-3">
+      <label for="recipient" class="form-label">Test #</label>
+      <input type="number" min="1" max="10" name="recipient" id="recipient" class="form-control" aria-describedby="recipientHelp">
+      <div id="recipientHelp" class="form-text">Type the account number provided by the tutor</div>
+    </div>
+    <div class="mb-3">
+      <label for="files" class="form-label">Files to upload</label>
+      <input type="file" name="files" id="files" class="form-control" aria-describedby="uploadHelp" multiple accept="image/jpg,image/jpeg">
+      <div id="uploadHelp" class="form-text">Choose files to upload</div>
+    </div>
+     <button type="submit" class="btn btn-primary" id="submit-button">Submit</button>
+  </form>
+</body>
+</html>

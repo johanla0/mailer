@@ -1,56 +1,34 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable global-require */
-const fs = require('fs');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-function generateHtmlPlugins(templateDir) {
-  const templateFiles = fs.readdirSync(path.resolve(__dirname, templateDir));
-  return templateFiles.map((item) => {
-    const [name, extension] = item.split('.');
-    return new HtmlWebpackPlugin({
-      filename: `${name}.html`,
-      template: path.resolve(__dirname, `${templateDir}/${name}.${extension}`),
-    });
-  });
-}
+const HtmlWebpackLiveReload = require('html-webpack-live-reload-plugin');
 
 const mode = process.env.NODE_ENV || 'development';
-const htmlPlugins = generateHtmlPlugins('./src/views');
 
 module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
-    assetModuleFilename: 'assets/[hash][ext][query]',
     clean: true,
   },
   devtool: mode === 'development' ? 'inline-source-map' : false,
-  performance: {
-    maxEntrypointSize: 512000,
-    maxAssetSize: 512000,
-  },
+  target: mode === 'development' ? 'web' : 'browserslist',
   module: {
     rules: [
       {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-loader',
-            options: {
-              pretty: true,
-            },
-          },
-        ],
+        test: /\.ya?ml$/,
+        type: 'json',
+        use: 'yaml-loader',
       },
       {
         test: /\.(scss)$/,
         use: [
-          process.env.NODE_ENV !== 'production'
-            ? 'style-loader'
-            : MiniCssExtractPlugin.loader,
+          {
+            // inject CSS to page
+            loader: 'style-loader',
+          },
           {
             // translates CSS into CommonJS modules
             loader: 'css-loader',
@@ -84,18 +62,13 @@ module.exports = {
           minimize: false,
         },
       },
-      {
-        test: /\.(?:|gif|png|jpg|svg)$/,
-        type: 'asset/resource',
-        parser: { dataUrlCondition: { maxSize: 15000 } },
-      },
     ],
   },
   plugins: [
-    ...htmlPlugins,
-    new MiniCssExtractPlugin({
-      filename: 'style.css',
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
     }),
+    new HtmlWebpackLiveReload(),
   ],
   resolve: {
     fallback: {
