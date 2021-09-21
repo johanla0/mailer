@@ -15,7 +15,7 @@
     "@popperjs/core": "^2.10.1",
     "axios": "^0.21.4",
     "bootstrap": "^5.1.1",
-    "pica": "^7.1.0"
+    "image-blob-reduce": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.3.4",

@@ -8,7 +8,7 @@
 </head>
 <body class="mx-3 mx-md-5">
   <h1 class="text-center my-3">Use the form below to send your paperwork</h1>
-  <form action="" id="send-paperwork-form">
+  <form action="">
     <fieldset>
       <div class="mb-3">
         <label for="recipient" class="form-label">Test #</label>
@@ -24,9 +24,14 @@
           <input type="text" name="group" id="group" class="form-control" placeholder="Input your group number">
         </div>
       </div>
-      <div class="mb-3">
-        <label for="files" class="form-label">Photos to upload</label>
-        <input type="file" name="files" id="files" class="form-control" multiple accept="image/jpg,image/jpeg">
+      <div id="file-container" class="card px-3 pt-2">
+        <div class="mb-3">
+          <label for="file" class="form-label">Photos to upload</label>
+          <input type="file" name="file" id="file" class="form-control files" accept="image/jpg,image/jpeg">
+        </div>
+        <div class="mb-3">
+          <button id="add-button" class="btn btn-info">+</button>
+        </div>
       </div>
       <div class="mt-4 mb-3 row">
         <div class="col-12 col-md-3">
