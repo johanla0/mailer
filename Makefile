@@ -32,6 +32,6 @@ uncommit:
 upd:
 	git merge master --no-edit
 webpack:
-	npx webpack serve --mode development
+	npx webpack serve --mode development --env development
 
 .PHONY: test
