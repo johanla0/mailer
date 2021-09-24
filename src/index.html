@@ -17,25 +17,33 @@
       <div class="row">
         <div class="mb-3 col-12 col-md-6">
           <label for="name" class="form-label">Name</label>
-          <input type="text" name="name" id="name" class="form-control" placeholder="Input your name as in contract">
+          <input type="text" name="name" id="name" class="form-control" placeholder="Input your name as stated in contract">
         </div>
         <div class="mb-3 col-12 col-md-6">
           <label for="group" class="form-label">Group number</label>
           <input type="text" name="group" id="group" class="form-control" placeholder="Input your group number">
         </div>
       </div>
-      <div id="file-container" class="card px-3 pt-2">
+      <div class="card px-3 pt-2" id="file-container">
         <div>
           <label for="file" class="form-label">Photos to upload</label>
-          <input type="file" name="file" id="file" class="form-control files mb-3" accept="image/jpg,image/jpeg">
+          <input type="file" name="file[]" id="file" class="form-control files mb-3" accept="image/jpg,image/jpeg">
         </div>
         <button id="add-button" class="btn btn-info mb-3 col-12 col-md-1">+</button>
+      </div>
+      <div class="card mt-3 px-3 py-2">
+        <label class="form-label" data-bs-toggle="collapse" href="#test" role="button" aria-expanded="false" aria-controls="test">Preview <span class="text-muted">(click to expand)</span></label>
+        <div class="collapse" id="test">
+          <div class="text-center text-md-start" id="file-preview-container">
+            <img height="150" class="border p-1" id="preview-file">
+          </div>
+        </div>
       </div>
       <div class="mt-4 mb-3 row">
         <div class="col-12 col-md-3">
           <button type="submit" class="btn btn-primary w-100" id="submit-button">Submit</button>
         </div>
-        <div class="col-12 col-md-9 mt-3 mt-md-0 test-start text-md-center d-none">
+        <div class="col-12 col-md-9 mt-3 mt-md-0 text-start text-md-center d-none">
           <div class="spinner-border text-warning" role="status"></div>
         </div>
       </div>

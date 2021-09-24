@@ -9,7 +9,6 @@
 This tool is intended to provide students with a basic form to send their paperwork to the university mail servers.
 
 #### TODO:
-1. Fix live reload for webpack
 1. Add i18n support and translations
 1. Add captcha-like keypass support
-1. Add HEIC support/converter for MIME image/heic
+1. Implement HEIC converter for MIME image/heic to image/jpeg
