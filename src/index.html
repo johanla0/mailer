@@ -7,48 +7,53 @@
   <title>IRLC Paperwork mailer</title>
 </head>
 <body class="mx-3 mx-md-5">
-  <h1 class="text-center my-3">Use the form below to send your paperwork</h1>
-  <form action="">
-    <fieldset>
-      <div class="mb-3">
-        <label for="recipient" class="form-label">Test #</label>
-        <input type="number" min="1" max="10" name="recipient" id="recipient" class="form-control" placeholder="Test ID">
-      </div>
-      <div class="row">
-        <div class="mb-3 col-12 col-md-6">
-          <label for="name" class="form-label">Name</label>
-          <input type="text" name="name" id="name" class="form-control" placeholder="Input your name as stated in contract">
+  <div class="form">
+    <h1 class="text-center my-3">Use the form below to send your paperwork</h1>
+    <form action="">
+      <fieldset>
+        <div class="mb-3">
+          <label for="recipient" class="form-label">Test #</label>
+          <input type="number" min="1" max="10" name="recipient" id="recipient" class="form-control" placeholder="Test ID" required>
         </div>
-        <div class="mb-3 col-12 col-md-6">
-          <label for="group" class="form-label">Group number</label>
-          <input type="text" name="group" id="group" class="form-control" placeholder="Input your group number">
-        </div>
-      </div>
-      <div class="card px-3 pt-2" id="file-container">
-        <div>
-          <label for="file" class="form-label">Photos to upload</label>
-          <input type="file" name="file[]" id="file" class="form-control files mb-3" accept="image/jpg,image/jpeg">
-        </div>
-        <button id="add-button" class="btn btn-info mb-3 col-12 col-md-1">+</button>
-      </div>
-      <div class="card mt-3 px-3 py-2">
-        <label class="form-label" data-bs-toggle="collapse" href="#test" role="button" aria-expanded="false" aria-controls="test">Preview <span class="text-muted">(click to expand)</span></label>
-        <div class="collapse" id="test">
-          <div class="text-center text-md-start" id="file-preview-container">
-            <img height="150" class="border p-1" id="preview-file">
+        <div class="row">
+          <div class="mb-3 col-12 col-md-6">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" name="name" id="name" class="form-control" placeholder="Input your name as stated in contract" required>
+          </div>
+          <div class="mb-3 col-12 col-md-6">
+            <label for="group" class="form-label">Group number</label>
+            <input type="number" min="1" max="200" name="group" id="group" class="form-control" placeholder="Input your group number" required>
           </div>
         </div>
-      </div>
-      <div class="mt-4 mb-3 row">
-        <div class="col-12 col-md-3">
-          <button type="submit" class="btn btn-primary w-100" id="submit-button">Submit</button>
+        <div class="card px-3 pt-2" id="file-container">
+          <div>
+            <label for="file" class="form-label">Photos to upload</label>
+            <input type="file" name="file[]" id="file" class="form-control files mb-3" accept="image/jpg,image/jpeg" required>
+          </div>
+          <button id="add-button" class="btn btn-info mb-3 col-12 col-md-1">+</button>
         </div>
-        <div class="col-12 col-md-9 mt-3 mt-md-0 text-start text-md-center d-none">
-          <div class="spinner-border text-warning" role="status"></div>
+        <div class="card mt-3 px-3 py-2">
+          <label class="form-label" data-bs-toggle="collapse" href="#test" role="button" aria-expanded="false" aria-controls="test">Preview <span class="text-muted">(click to expand)</span></label>
+          <div class="collapse" id="test">
+            <div class="text-center text-md-start" id="file-preview-container">
+              <img height="150" class="border p-1" id="preview-file">
+            </div>
+          </div>
         </div>
-      </div>
-    </fieldset>
-  </form>
-  <h2 class="text-center my-3 d-none">Successfully sent!</h2>
+        <div class="mt-4 mb-3 row">
+          <div class="col-12 col-md-3">
+            <button type="submit" class="btn btn-primary w-100" id="submit-button">Submit</button>
+          </div>
+          <div class="col-12 col-md-9 mt-3 mt-md-0 text-center text-md-start d-none">
+            <div class="spinner-border text-warning" role="status"></div>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="result">
+    <h1 class="text-center my-3 d-none" id="header-success">Successfully sent! 😀</h2>
+    <h1 class="text-center my-3 d-none" id="header-error">Something went wrong! 🥲</h2>
+  </div>
 </body>
 </html>

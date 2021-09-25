@@ -11,4 +11,4 @@ This tool is intended to provide students with a basic form to send their paperw
 #### TODO:
 1. Add i18n support and translations
 1. Add captcha-like keypass support
-1. Implement HEIC converter for MIME image/heic to image/jpeg
+1. Implement HEIC converter for MIME image/heic to image/jpeg, see https://alexcorvi.github.io/heic2any/
