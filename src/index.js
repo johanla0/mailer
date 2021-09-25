@@ -14,8 +14,6 @@ const resizeFile = (file) => reduce.toBlob(file, {
   max: 1280,
 });
 
-const resizeFiles = (files) => Promise.all(files.map((file) => resizeFile(file)));
-
 const generatePreview = (file) => reduce.toBlob(file, {
   max: 150,
   unsharpAmount: 80,
@@ -24,7 +22,14 @@ const generatePreview = (file) => reduce.toBlob(file, {
 });
 
 const onchangeCallback = (e) => {
-  resizedFiles.push(resizeFile(e.target.files[0]));
+  const newItem = { id: e.target.id, promise: resizeFile(e.target.files[0]) };
+  const index = resizedFiles.findIndex((item) => item.id === newItem.id);
+  if (index === -1) {
+    resizedFiles.push(newItem);
+  } else {
+    resizedFiles[index] = newItem;
+  }
+
   generatePreview(e.target.files[0])
     .then((blob) => {
       document.getElementById(`preview-${e.target.id}`).src = URL.createObjectURL(blob);
@@ -58,24 +63,19 @@ addFileButton.addEventListener('click', (e) => {
 const form = document.querySelector('form');
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  Promise.all(resizedFiles)
+  const promises = resizedFiles.map((item) => item.promise);
+  Promise.all(promises)
     .then(async (data) => {
       const formData = new FormData(form);
       const recipient = formData.get('recipient');
       const sender = formData.get('name');
-      const filename = sender.trim().toLowerCase().replace(/s+/g, '_');
       const group = formData.get('group');
+      const filename = [group, sender.trim().replace(/s+/g, '_')].join('_');
       const formToSend = new FormData();
       formToSend.append('recipient', `test${recipient}`);
       formToSend.append('sender', sender);
       formToSend.append('group', group);
-      const files = formData.getAll('file[]');
-      if (files.length === data.length) {
-        data.map((file) => formToSend.append('file[]', file, uniqueId(filename)));
-      } else {
-        const recalculatedData = await resizeFiles(files);
-        recalculatedData.map((file) => formToSend.append('file[]', file, uniqueId(filename)));
-      }
+      data.map((file) => formToSend.append('file[]', file, uniqueId(`${filename}_`)));
     });
 
   // axios({
