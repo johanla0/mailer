@@ -4,7 +4,7 @@ branch:
 	git checkout $(ARGS) > /dev/null 2>&1 || git checkout -b $(ARGS)
 build:
 	rm -rf dist
-	NODE_ENV=production npx webpack
+	NODE_ENV=development npx webpack
 dev:
 	npm run dev
 history:

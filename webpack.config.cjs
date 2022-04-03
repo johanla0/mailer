@@ -4,8 +4,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackLiveReload = require('html-webpack-live-reload-plugin');
 
-const mode = process.env.NODE_ENV || 'development';
-
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -13,8 +11,8 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
   },
-  devtool: mode === 'development' ? 'inline-source-map' : false,
-  target: mode === 'development' ? 'web' : 'browserslist',
+  devtool: false,
+  target: 'browserslist',
   module: {
     rules: [
       {
