@@ -3,7 +3,6 @@ import { Controller } from '@hotwired/stimulus';
 import uniqueId from 'lodash.uniqueid';
 import remove from 'lodash.remove';
 import ImageBlobReduce from 'image-blob-reduce';
-// import { axios } from 'axios';
 
 const reduce = new ImageBlobReduce();
 const resizedFiles = [];
@@ -14,14 +13,23 @@ const API_ENDPOINT = '';
 const resize = (file) => reduce.toBlob(file, { max: MAX_RESOLUTION });
 
 const generatePreview = (file) => reduce.toBlob(file, {
-    max: PREVIEW_RESOLUTION,
-    unsharpAmount: 80,
-    unsharpRadius: 0.6,
-    unsharpThreshold: 2,
-  });
+  max: PREVIEW_RESOLUTION,
+  unsharpAmount: 80,
+  unsharpRadius: 0.6,
+  unsharpThreshold: 2,
+});
 
 export default class extends Controller {
-  static targets = [ 'recipientId', 'studentName', 'group', 'fileContainer', 'previewContainer', 'spinner', 'submitButton' ];
+  static targets = ['recipientId',
+    'studentName',
+    'group',
+    'fileContainer',
+    'previewContainer',
+    'spinner',
+    'submitButton',
+    'headerSuccess',
+    'headerError',
+  ];
 
   resizeFile(e) {
     const newItem = { id: e.target.id, promise: resize(e.target.files[0]) };
@@ -34,8 +42,8 @@ export default class extends Controller {
     imgPreview.setAttribute('height', '150');
     imgPreview.classList.add('ms-2', 'border', 'p-1');
     generatePreview(e.target.files[0])
-    .then((blob) => {
-      imgPreview.setAttribute('src', URL.createObjectURL(blob));
+      .then((blob) => {
+        imgPreview.setAttribute('src', URL.createObjectURL(blob));
       });
     this.previewContainerTarget.append(imgPreview);
   }
@@ -55,37 +63,49 @@ export default class extends Controller {
 
   submit(e) {
     e.preventDefault();
+    this.submitButtonTarget.setAttribute('disabled', 'true');
     this.spinnerTarget.classList.remove('d-none');
     const promises = resizedFiles.map((item) => item.promise);
+    const recipientId = this.recipientIdTarget.value;
+    const studentName = this.studentNameTarget.value;
+    const group = this.groupTarget.value;
     Promise.all(promises)
       .then(async (data) => {
         const formToSend = new FormData();
-        formToSend.append('recipientId', this.recipientIdTarget.value);
-        formToSend.append('studentName', this.studentNameTarget.value);
-        formToSend.append('group', this.groupTarget.value);
+        formToSend.append('recipientId', recipientId);
+        formToSend.append('studentName', studentName);
+        formToSend.append('group', group);
 
-        const filename = [group, this.studentNameTarget.value.trim().replace(/s+/g, '_')].join('_');
+        const filename = [group, studentName.trim().replace(/s+/g, '_')].join('_');
         data.forEach((file) => formToSend.append('file[]', file, uniqueId(`${filename}_`)));
-        // TODO: Send formToSend
-      });
 
-      // axios({
-      //   method: 'post',
-      //   url: API_ENDPOINT,
-      //   data: formToSend,
-      //   headers: { 'Content-Type': 'multipart/form-data' },
-      // })
-      //   .then()
-      //   // eslint-disable-next-line no-console
-      //   .catch((err) => console.error(err));
-    // });
+        const date = new Date().toJSON().slice(0, 10);
+        Email.send({
+          SecureToken: '',
+          To: `test${recipientId}@irlc.msu.ru`,
+          From: 'dolgov.is@irlc.msu.ru',
+          Subject: `${date}: ${studentName}`,
+          Body: '',
+          Attachments: [
+            {
+              name: 'smtp.png',
+              path: 'https://…/smtp.png',
+            }],
+        }).then(function (response) {
+          console.log(response);
+          this.headerSuccessTarget.classList.remove('d-none');
+        }, function (err) {
+          console.error(err);
+          this.headerErrorTarget.classList.remove('d-none');
+        });
+      });
   }
 
   toggleSubmit() {
-    if (this.recipientIdTarget.value !== '' &&
-        this.studentNameTarget.value !== '' &&
-        this.groupTarget.value !== '' &&
-        resizedFiles.length !== 0) {
+    if (this.recipientIdTarget.value !== ''
+        && this.studentNameTarget.value !== ''
+        && this.groupTarget.value !== ''
+        && resizedFiles.length !== 0) {
       this.submitButtonTarget.removeAttribute('disabled');
     } else {
       this.submitButtonTarget.setAttribute('disabled', 'true');

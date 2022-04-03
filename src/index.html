@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IRLC Paperwork mailer</title>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 <body class="mx-3 mx-md-5" data-controller="process-files">
   <div class="form" data-action="input->process-files#toggleSubmit">
@@ -51,8 +52,8 @@
     </form>
   </div>
   <div class="result">
-    <h1 class="text-center my-3 d-none" id="header-success">Successfully sent! 😀</h2>
-    <h1 class="text-center my-3 d-none" id="header-error">Something went wrong! 🥲</h2>
+    <h1 class="text-center my-3 d-none" data-process-files-target="headerSuccess">Successfully sent! 😀</h2>
+    <h1 class="text-center my-3 d-none" data-process-files-target="headerError">Something went wrong! 🥲</h2>
   </div>
 </body>
 </html>

@@ -23,10 +23,6 @@ push:
 	git push origin $(BRANCH)
 s:
 	systemctl restart httpd.service
-test:
-	npm test
-test-coverage:
-	npm test -- --coverage --coverageProvider=v8
 uncommit:
 	git reset --soft HEAD^
 upd:
