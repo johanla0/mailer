@@ -79,25 +79,25 @@ export default class extends Controller {
         const filename = [group, studentName.trim().replace(/s+/g, '_')].join('_');
         data.forEach((file) => formToSend.append('file[]', file, uniqueId(`${filename}_`)));
 
-        const date = new Date().toJSON().slice(0, 10);
-        Email.send({
-          SecureToken: '',
-          To: `test${recipientId}@irlc.msu.ru`,
-          From: 'dolgov.is@irlc.msu.ru',
-          Subject: `${date}: ${studentName}`,
-          Body: '',
-          Attachments: [
-            {
-              name: 'smtp.png',
-              path: 'https://…/smtp.png',
-            }],
-        }).then(function (response) {
-          console.log(response);
-          this.headerSuccessTarget.classList.remove('d-none');
-        }, function (err) {
-          console.error(err);
-          this.headerErrorTarget.classList.remove('d-none');
-        });
+        // const date = new Date().toJSON().slice(0, 10);
+        // Email.send({
+        //   SecureToken: '',
+        //   To: `test${recipientId}@irlc.msu.ru`,
+        //   From: 'dolgov.is@irlc.msu.ru',
+        //   Subject: `${date}: ${studentName}`,
+        //   Body: '',
+        //   Attachments: [
+        //     {
+        //       name: 'smtp.png',
+        //       path: 'https://…/smtp.png',
+        //     }],
+        // }).then(function (response) {
+        //   console.log(response);
+        //   this.headerSuccessTarget.classList.remove('d-none');
+        // }, function (err) {
+        //   console.error(err);
+        //   this.headerErrorTarget.classList.remove('d-none');
+        // });
       });
   }
 
