@@ -1,5 +1,7 @@
 ### IRLC Basic Mailer
 
+[![Build and GH-Page Deploy](https://github.com/johanla0/mailer/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/johanla0/mailer/actions/workflows/main.yml)
+
 **Case:** we want to collect photos of the paperwork from our students once they're done.
 
 **Problem:** mail server delays from China to Russia which took up to several hours depending on many factors, one of them is attachment size.

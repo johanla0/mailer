@@ -7,44 +7,44 @@
   <title>IRLC Paperwork mailer</title>
   <script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
-<body class="mx-3 mx-md-5" data-controller="process-files">
-  <div class="form" data-action="input->process-files#toggleSubmit">
+<body class="mx-3 mx-md-5" data-controller="form">
+  <div class="form" data-action="input->form#toggleSubmit">
     <h1 class="text-center my-3">Use the form below to send your paperwork</h1>
     <form action="">
       <fieldset>
         <div class="mb-3">
           <label for="recipient" class="form-label">Test #</label>
-          <input type="number" min="1" max="10" name="recipient" id="recipient" class="form-control" placeholder="Test ID" required data-process-files-target="recipientId">
+          <input type="number" min="1" max="10" name="recipient" id="recipient" class="form-control" placeholder="Test ID" required data-form-target="recipientId">
         </div>
         <div class="row">
           <div class="mb-3 col-12 col-md-6">
             <label for="name" class="form-label">Name</label>
-            <input type="text" name="name" id="name" class="form-control" placeholder="Input your name as stated in contract" required data-process-files-target="studentName">
+            <input type="text" name="name" id="name" class="form-control" placeholder="Input your name as stated in contract" required data-form-target="studentName">
           </div>
           <div class="mb-3 col-12 col-md-6">
             <label for="group" class="form-label">Group number</label>
-            <input type="number" min="1" max="200" name="group" id="group" class="form-control" placeholder="Input your group number" required data-process-files-target="group">
+            <input type="number" min="1" max="200" name="group" id="group" class="form-control" placeholder="Input your group number" required data-form-target="group">
           </div>
         </div>
         <div class="card px-3 pt-2">
-          <div id="file-container" data-process-files-target="fileContainer">
+          <div id="file-container" data-form-target="fileContainer">
             <label for="file" class="form-label">Photos to upload</label>
-            <input type="file" name="file[]" id="file" class="form-control files mb-3" accept="image/jpg,image/jpeg" required data-process-files-target="file" data-action="change->process-files#resizeFile change->process-files#addPreview">
+            <input type="file" name="file[]" id="file" class="form-control files mb-3" accept="image/jpg,image/jpeg" required data-form-target="file" data-action="change->form#addPreview">
           </div>
-          <button id="add-button" class="btn btn-info mb-3 col-12 col-md-1" data-action="click->process-files#addInput">+</button>
+          <button id="add-button" class="btn btn-info mb-3 col-12 col-md-1" data-action="click->form#addInput">+</button>
         </div>
         <div class="card mt-3 px-3 py-2">
-          <label class="form-label" data-bs-toggle="collapse" href="#preview-container" role="button" aria-expanded="false" aria-controls="preview-container">Preview <span class="text-muted">(click to expand)</span></label>
-          <div class="collapse" id="preview-container" data-process-files-target="previewContainer">
-            <div class="text-center text-md-start" id="file-preview-container" data-process-files-target="previewContainer">
+          <label class="form-label" data-bs-toggle="collapse" href="#preview" role="button" aria-expanded="false" aria-controls="preview">Preview <span class="text-muted">(click to expand)</span></label>
+          <div class="collapse" id="preview">
+            <div class="text-center text-md-start" id="file-preview-container" data-form-target="previewContainer">
             </div>
           </div>
         </div>
         <div class="mt-4 mb-3 row">
           <div class="col-12 col-md-3">
-            <button type="submit" class="btn btn-primary w-100" id="submit-button" data-process-files-target="submitButton" data-action="process-files#submit" disabled="true">Submit</button>
+            <button type="submit" class="btn btn-primary w-100" id="submit-button" data-form-target="submitButton" data-action="form#submit" disabled="true">Submit</button>
           </div>
-          <div class="col-12 col-md-9 mt-3 mt-md-0 text-center text-md-start d-none" data-process-files-target="spinner">
+          <div class="col-12 col-md-9 mt-3 mt-md-0 text-center text-md-start d-none" data-form-target="spinner">
             <div class="spinner-border text-warning" role="status"></div>
           </div>
         </div>
@@ -52,8 +52,8 @@
     </form>
   </div>
   <div class="result">
-    <h1 class="text-center my-3 d-none" data-process-files-target="headerSuccess">Successfully sent! 😀</h2>
-    <h1 class="text-center my-3 d-none" data-process-files-target="headerError">Something went wrong! 🥲</h2>
+    <h1 class="text-center my-3 d-none" data-form-target="headerSuccess">Successfully sent! 😀</h2>
+    <h1 class="text-center my-3 d-none" data-form-target="headerError">Something went wrong! 🥲</h2>
   </div>
 </body>
 </html>
