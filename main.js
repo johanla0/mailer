@@ -2920,11 +2920,10 @@ const generatePreview = (file) => reduce.toBlob(file, {
           // To: `test${recipientId}@irlc.msu.ru`,
           To: 'dolgov.is@irlc.msu.ru',
           From: 'dolgov.is@irlc.msu.ru',
-          Subject: `${date}: ${studentName}`,
+          Subject: `${date}: test${recipientId} - ${studentName}`,
           Body: `Ответ студента ${studentName}, группа: ${group}. Кол-во файлов: ${data.length}`,
           Attachments: attachments,
         }).then((response) => {
-          console.log(response);
           headerSuccess.classList.remove('d-none');
           spinner.classList.add('d-none');
         }, (err) => {

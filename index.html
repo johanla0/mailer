@@ -14,7 +14,14 @@
       <fieldset>
         <div class="mb-3">
           <label for="recipient" class="form-label">Test #</label>
-          <input type="number" min="1" max="10" name="recipient" id="recipient" class="form-control" placeholder="Test ID" required data-form-target="recipientId">
+          <select name="recipient" id="recipient" class="form-control" placeholder="Test ID" required data-form-target="recipientId">
+            <option disabled selected value class="d-none"> -- Select Test ID -- </option>
+            <option value="1">test1</option>
+            <option value="2">test2</option>
+            <option value="3">test3</option>
+            <option value="4">test4</option>
+            <option value="5">test5</option>
+          </select>
         </div>
         <div class="row">
           <div class="mb-3 col-12 col-md-6">
@@ -34,10 +41,8 @@
           <button id="add-button" class="btn btn-info mb-3 col-12 col-md-1" data-action="click->form#addInput">+</button>
         </div>
         <div class="card mt-3 px-3 py-2">
-          <label class="form-label" data-bs-toggle="collapse" href="#preview" role="button" aria-expanded="false" aria-controls="preview">Preview <span class="text-muted">(click to expand)</span></label>
-          <div class="collapse" id="preview">
-            <div class="text-center text-md-start" id="file-preview-container" data-form-target="previewContainer">
-            </div>
+          <label class="form-label">Preview</label>
+          <div class="text-center text-md-start" id="file-preview-container" data-form-target="previewContainer">
           </div>
         </div>
         <div class="mt-4 mb-3 row">
