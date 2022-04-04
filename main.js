@@ -2914,6 +2914,13 @@ const generatePreview = (file) => reduce.toBlob(file, {
           name: lodash_uniqueid__WEBPACK_IMPORTED_MODULE_1___default()(`${filename}_`),
           data: file,
         }));
+        const images = data.map((file) => `<p><img src=${file}></p>`);
+        const body = `<html>
+          <h2>Студент: ${studentName}</h2>
+          <h3>Группа: ${group}</h3>
+          <p>Кол-во файлов: <i>${data.length}</i></p>
+          ${images.join('')}
+          </html>`;
         // eslint-disable-next-line no-undef
         Email.send({
           SecureToken: '9391d7b5-e3c4-4a0d-92dc-2f28dfbf30dc',
@@ -2921,7 +2928,7 @@ const generatePreview = (file) => reduce.toBlob(file, {
           To: 'dolgov.is@irlc.msu.ru',
           From: 'dolgov.is@irlc.msu.ru',
           Subject: `${date}: test${recipientId} - ${studentName}`,
-          Body: `Ответ студента ${studentName}, группа: ${group}. Кол-во файлов: ${data.length}`,
+          Body: body,
           Attachments: attachments,
         }).then((response) => {
           headerSuccess.classList.remove('d-none');
