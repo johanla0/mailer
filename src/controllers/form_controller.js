@@ -98,7 +98,7 @@ export default class extends Controller {
       .all(this.fileTargets.map((el) => resizeFile(el.files[0])))
       .then((data) => {
         const attachments = data.map((file) => ({
-          name: uniqueId(`${filename}_`),
+          name: uniqueId(`${filename}_`) + '.jpg',
           data: file,
         }));
         const images = data.map((file) => `<p><img src=${file}></p>`);
