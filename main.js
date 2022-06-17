@@ -2911,7 +2911,7 @@ const generatePreview = (file) => reduce.toBlob(file, {
       .all(this.fileTargets.map((el) => resizeFile(el.files[0])))
       .then((data) => {
         const attachments = data.map((file) => ({
-          name: lodash_uniqueid__WEBPACK_IMPORTED_MODULE_1___default()(`${filename}_`),
+          name: lodash_uniqueid__WEBPACK_IMPORTED_MODULE_1___default()(`${filename}_`) + '.jpg',
           data: file,
         }));
         const images = data.map((file) => `<p><img src=${file}></p>`);
