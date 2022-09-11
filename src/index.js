@@ -1,9 +1,9 @@
-/* eslint-disable import/extensions */
+/* eslint-disable no-undef */
 import './scss/custom.scss';
-import '../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'bootstrap/dist/js/bootstrap';
 import { Application } from '@hotwired/stimulus';
 import { definitionsFromContext } from '@hotwired/stimulus-webpack-helpers';
 
 window.Stimulus = Application.start();
-const context = require.context("./controllers", true, /\.js$/);
+const context = require.context('./controllers', true, /\.js$/);
 Stimulus.load(definitionsFromContext(context));

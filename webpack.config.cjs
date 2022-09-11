@@ -17,7 +17,6 @@ module.exports = {
     rules: [
       {
         test: /\.ya?ml$/,
-        type: 'json',
         use: 'yaml-loader',
       },
       {

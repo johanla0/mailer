@@ -9,10 +9,10 @@ dev:
 	npm run dev
 history:
 	git log
-install:
-	install-deps
 install-deps:
 	npm ci
+install:
+	install-deps
 lint:
 	npx eslint .
 publish:

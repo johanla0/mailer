@@ -1,2 +1,19 @@
+---
 translation:
-  title: 发送您的文书工作
+  alerts:
+    error: 出问题了 🥲
+    successfully_sent: 发送成功 😀
+  buttons:
+    submit: 申请
+  file_container_label: 要上传的照片
+  group_number: 组号
+  header: 使用下面的表格发送您的文书工作
+  language: 中文
+  name: 你的名字
+  placeholders:
+    group_placeholder: 输入您的组号
+    name_placeholder: 输入您的姓名，如合同中所述
+    test_id_placeholder: 测试编号
+  preview: 预习
+  test_id: 测试编号
+  test_id_blank: '-- 选择测试编号 --'

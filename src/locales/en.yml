@@ -1,2 +1,19 @@
+---
 translation:
-  title: IRLC Paperwork mailer
+  alerts:
+    error: Something went wrong! 🥲
+    successfully_sent: Successfully sent! 😀
+  buttons:
+    submit: Submit
+  file_container_label: Photos to upload
+  group_number: Group number
+  header: Use the form below to send your paperwork
+  language: English
+  name: Name
+  placeholders:
+    group_placeholder: Input your group number
+    name_placeholder: Input your name as stated in contract
+    test_id_placeholder: Test ID
+  preview: Preview
+  test_id: 'Test #'
+  test_id_blank: '-- Select Test ID --'

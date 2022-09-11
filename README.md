@@ -9,3 +9,8 @@
 **Solution:** compress/resize image on the client side then send to the designated e-mail address.
 
 This tool is intended to provide students with a basic form to send their paperwork to the university mail servers.
+
+Instructions:
+
+- run `npm install` to install packages
+- run `make webpack` to run locally

@@ -7,15 +7,29 @@
   <title>IRLC Paperwork mailer</title>
   <script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
-<body class="mx-3 mx-md-5" data-controller="form">
+<body class="mx-3 mx-md-5" data-controller="form translations">
   <div class="form" data-action="input->form#toggleSubmit">
-    <h1 class="text-center my-3">Use the form below to send your paperwork</h1>
+    <div class="row justify-content-end my-3">
+      <div class="col-12 col-md-11">
+        <h1 data-translations-target="text" data-key="header">Use the form below to send your paperwork</h1>
+      </div>
+      <div class="col-12 col-md-1 align-self-center">
+        <div class="dropdown">
+          <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" id="languageToggle" data-bs-toggle="dropdown" aria-expanded="false" data-translations-target="toggle">Language</button>
+          <ul class="dropdown-menu" aria-labelledby="languageToggle" data-action="click->translations#switchLanguage">
+            <li><a href="#" class="dropdown-item" data-lng="ru">Русский</a></li>
+            <li><a href="#" class="dropdown-item" data-lng="zh">中文</a></li>
+            <li><a href="#" class="dropdown-item" data-lng="en">English</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <form action="">
       <fieldset>
         <div class="mb-3">
-          <label for="recipient" class="form-label">Test #</label>
-          <select name="recipient" id="recipient" class="form-control" placeholder="Test ID" required data-form-target="recipientId">
-            <option disabled selected value class="d-none"> -- Select Test ID -- </option>
+          <label for="recipient" class="form-label" data-translations-target="text" data-key="test_id">Test #</label>
+          <select name="recipient" id="recipient" class="form-control" placeholder="Test ID" required data-form-target="recipientId" data-translations-target="placeholder" data-key="placeholders.test_id_placeholder">
+            <option disabled selected value class="d-none" data-translations-target="text" data-key="test_id_blank"> -- Select Test ID -- </option>
             <option value="1">test1</option>
             <option value="2">test2</option>
             <option value="3">test3</option>
@@ -25,29 +39,29 @@
         </div>
         <div class="row">
           <div class="mb-3 col-12 col-md-6">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" name="name" id="name" class="form-control" placeholder="Input your name as stated in contract" required data-form-target="studentName">
+            <label for="name" class="form-label" data-translations-target="text" data-key="name">Name</label>
+            <input type="text" name="name" id="name" class="form-control" placeholder="Input your name as stated in contract" required data-form-target="studentName" data-translations-target="placeholder" data-key="placeholders.name_placeholder">
           </div>
           <div class="mb-3 col-12 col-md-6">
-            <label for="group" class="form-label">Group number</label>
-            <input type="number" min="1" max="200" name="group" id="group" class="form-control" placeholder="Input your group number" required data-form-target="group">
+            <label for="group" class="form-label" data-translations-target="text" data-key="group_number">Group number</label>
+            <input type="number" min="1" max="200" name="group" id="group" class="form-control" placeholder="Input your group number" required data-form-target="group" data-translations-target="placeholder" data-key="placeholders.group_placeholder">
           </div>
         </div>
         <div class="card px-3 pt-2">
           <div id="file-container" data-form-target="fileContainer">
-            <label for="file" class="form-label">Photos to upload</label>
+            <label for="file" class="form-label" data-translations-target="text" data-key="file_container_label">Photos to upload</label>
             <input type="file" name="file[]" id="file" class="form-control files mb-3" accept="image/jpg,image/jpeg" required data-form-target="file" data-action="change->form#addPreview">
           </div>
           <button id="add-button" class="btn btn-info mb-3 col-12 col-md-1" data-action="click->form#addInput">+</button>
         </div>
         <div class="card mt-3 px-3 py-2">
-          <label class="form-label">Preview</label>
+          <label class="form-label" data-translations-target="text" data-key="preview">Preview</label>
           <div class="text-center text-md-start" id="file-preview-container" data-form-target="previewContainer">
           </div>
         </div>
         <div class="mt-4 mb-3 row">
           <div class="col-12 col-md-3">
-            <button type="submit" class="btn btn-primary w-100" id="submit-button" data-form-target="submitButton" data-action="form#submit" disabled="true">Submit</button>
+            <button type="submit" class="btn btn-primary w-100" id="submit-button" data-form-target="submitButton" data-action="form#submit" disabled="true" data-translations-target="text" data-key="buttons.submit">Submit</button>
           </div>
           <div class="col-12 col-md-9 mt-3 mt-md-0 text-center text-md-start d-none" data-form-target="spinner">
             <div class="spinner-border text-warning" role="status"></div>
@@ -57,8 +71,8 @@
     </form>
   </div>
   <div class="result">
-    <h1 class="text-center my-3 d-none" data-form-target="headerSuccess">Successfully sent! 😀</h2>
-    <h1 class="text-center my-3 d-none" data-form-target="headerError">Something went wrong! 🥲</h2>
+    <h1 class="text-center my-3 d-none" data-form-target="headerSuccess" data-translations-target="text" data-key="alerts.successfully_sent">Successfully sent! 😀</h2>
+    <h1 class="text-center my-3 d-none" data-form-target="headerError" data-translations-target="text" data-key="alerts.error">Something went wrong! 🥲</h2>
   </div>
 </body>
 </html>
