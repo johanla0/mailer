@@ -98,7 +98,7 @@ export default class extends Controller {
       .all(this.fileTargets.map((el) => resizeFile(el.files[0])))
       .then((data) => {
         const attachments = data.map((file) => ({
-          name: uniqueId(`${filename}_`) + '.jpg',
+          name: `${uniqueId(filename)}.jpg`,
           data: file,
         }));
         const images = data.map((file) => `<p><img src=${file}></p>`);
@@ -112,7 +112,6 @@ export default class extends Controller {
         Email.send({
           SecureToken: '9391d7b5-e3c4-4a0d-92dc-2f28dfbf30dc',
           To: `test${recipientId}@irlc.msu.ru`,
-          // To: 'dolgov.is@irlc.msu.ru',
           From: 'dolgov.is@irlc.msu.ru',
           Subject: `${date}: test${recipientId} - ${studentName}`,
           Body: body,
