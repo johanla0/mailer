@@ -110,7 +110,7 @@ export default class extends Controller {
           </html>`;
         // eslint-disable-next-line no-undef
         Email.send({
-          SecureToken: '9391d7b5-e3c4-4a0d-92dc-2f28dfbf30dc',
+          SecureToken: 'f1f0a1d3-d2c7-463a-a1bc-0ac2322b51f2',
           To: `test${recipientId}@irlc.msu.ru`,
           From: 'dolgov.is@irlc.msu.ru',
           Subject: `${date}: test${recipientId} - ${studentName}`,
